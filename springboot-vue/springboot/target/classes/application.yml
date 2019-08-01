@@ -1,0 +1,45 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    #jdbc����������
+    driver-class-name: com.mysql.jdbc.Driver
+    #jdbc�����ַ���
+    url: jdbc:mysql://localhost:3306/springboot?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8&autoReconnect=true&failOverReadOnly=false
+    #ָ����������ʱʹ�õ��û���
+    username: root
+    password:
+    #��ʼ�������������ӵĸ�������ʼ����������ʾ����init��������,���ߵ�һ��getConnectionʱ
+    initialSize: 5
+    #��С���ӳ�����
+    minIdle: 5
+    #������ӳ�����
+    maxActive: 20
+    #��ȡ����ʱ���ȴ�ʱ��,��λ����.
+    maxWait: 60000
+    #���ü����òŽ���һ�μ�⣬�����Ҫ�رյĿ������ӣ���λ�Ǻ���
+    timeBetweenEvictionRunsMillis: 28000
+    #����һ�������ڳ�����С�����ʱ�䣬��λ�Ǻ���
+    minEvictableIdleTimeMillis: 300000
+    #������������Ƿ���Ч��sql,Ҫ����һ����ѯ���
+    validationQuery: SELECT 1
+    #Ĭ��Ϊfalse,����Ϊtrue,��Ӱ������,���ұ�֤��ȫ��.�������ӵ�ʱ����,�������ʱ��
+    #����timeBetweenEvictionRunsMillis,ִ��validationQuery��������Ƿ���Ч
+    testWhileIdle: true
+    #Ĭ��Ϊtrue,����Ϊfalse,��������ʱִ��validationQuery�����Ƿ���Ч,����������û�Ӱ������
+    testOnBorrow: false
+    #Ĭ��Ϊfalse,����Ϊfalse,�黹����ʱִ��validationQuery��������Ƿ���Ч,����������ûή������
+    testOnReturn: false
+    #���ü��ͳ�����ص�filters��ȥ�����ؽ���sql�޷�ͳ�ƣ�'wall'���ڷ���ǽ
+    filters: stat,wall,log4j
+    logSlowSql: true
+#mybatis
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: cn.ak47007.pojo
+  configuration:
+#�����շ���������
+      map-underscore-to-camel-case: true
+      #��ӡsql������̨
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
